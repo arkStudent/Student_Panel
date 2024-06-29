@@ -11,7 +11,7 @@ class SubjectController extends Controller
     public function showSelectSubjectForm()
     {
         $subjects = Subject::select('sub_id', 'sname')->distinct()->get();
-        return view('select_subject', compact('subjects'));
+        return view('academic.lessonPlan', compact('subjects'));
     }
 
     public function getSubjectDetails(Request $request)
@@ -58,11 +58,8 @@ class SubjectController extends Controller
                         ->where('academic_year', $academic_year)
                         ->get();
 
-        return view('subject_details', compact('fname', 'academic_year', 'std', 'dv', 'lessons'));
+        return view('academic.lessonPlanRepo', compact('fname', 'academic_year', 'std', 'dv', 'lessons'));
     }
-
-
-
 
     //calender Of Events
     public function showReports(Request $request)
@@ -96,7 +93,7 @@ class SubjectController extends Controller
         ];
 
         // Return view with data
-        return view('calenderOfEvent', $data);
+        return view('academic.calenderOfEvent', $data);
     }
  
 }

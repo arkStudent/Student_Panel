@@ -10,7 +10,7 @@ class AttendController extends Controller
 {
     public function index()
     {
-        return view('attendance');
+        return view('academic.attendance');
     }
 
     public function submitAttendance(Request $request)
@@ -35,6 +35,6 @@ class AttendController extends Controller
             ->get();
 
         // Return the data to the attendTable view
-        return view('attendTable', compact('attendance','request'));
+        return view('academic.attendTable', compact('attendance','request'));
     }
 }

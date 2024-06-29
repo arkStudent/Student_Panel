@@ -11,7 +11,7 @@
     <div class="container mt-3">
 
         <table class="table table-striped table-bordered text-center mt-3">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th>Sl No</th>
                     <th>Activity</th>

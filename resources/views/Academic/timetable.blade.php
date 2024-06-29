@@ -12,7 +12,7 @@
     {{-- <h3 class="text-center">Time Table</h3> --}}
     <div class="card">
         <div class="card-header text-center">
-            <h4 class="card-title">View Time table of academic year {{ $academic_year }}</h4>
+            <h4 class="card-title">Time table of academic year {{ $academic_year }}</h4>
             
             {{-- File to show student details on top --}}
             @include('student_header')

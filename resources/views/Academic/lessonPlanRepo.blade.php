@@ -40,7 +40,6 @@
                          <td>{{ $index + 1 }}</td>
                          <td>{{ $lesson->topic }}</td>
                          <td>{{ $lesson->sub_topic }}</td>
-
                          <td>{{ $lesson->class_id }}</td>
                      </tr>
                  @endforeach
