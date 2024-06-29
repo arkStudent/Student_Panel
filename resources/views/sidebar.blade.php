@@ -45,7 +45,7 @@
                         {{-- <i class="bi bi-caret-right dropdown-icon"></i> --}}
                     </a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{ route('login') }}" target="_self"><i class="bi bi-arrow-right items"></i>Exam
+                        <li><a href="{{ route('examTTForm') }}" target="_self"><i class="bi bi-arrow-right items"></i>Exam
                                 Time Table</a></li>
                         <li><a href="{{ route('login') }}" target="_self"><i
                                     class="bi bi-arrow-right items"></i>Exam-Wise Result</a></li>
