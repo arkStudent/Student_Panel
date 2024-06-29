@@ -10,7 +10,7 @@ class AttendController extends Controller
 {
     public function index()
     {
-        return view('attendance');
+        return view('academic.attendance');
     }
 
     public function submitAttendance(Request $request)

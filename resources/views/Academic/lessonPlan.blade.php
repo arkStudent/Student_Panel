@@ -3,7 +3,7 @@
  @section('content')
      <div class="container">
          <div class="text-center mb-4">
-             <h3>Select Subject</h3>
+             <h3>Lesson Plan</h3>
          </div>
          <form id="subjectForm" method="POST">
              @csrf

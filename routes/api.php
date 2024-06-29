@@ -6,7 +6,7 @@ use App\Http\Controllers\AttendController;
 use App\Http\Controllers\ArkController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ExamController;
-
+use App\Http\Controllers\FeesController;
 
 // Route for user endpoint
 Route::get('/user', function (Request $request) {
@@ -28,6 +28,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/attendForm', 'index')->name('attend.index');
         Route::post('/attendTable','submitAttendance')->name('attend.table');
     });
+
      // Routes handled by SubjectController
     Route::controller(SubjectController::class)->group(function () {
         Route::get('/select-subject', [SubjectController::class, 'showSelectSubjectForm'])->name('selectsubject');
@@ -42,6 +43,11 @@ Route::middleware(['web'])->group(function () {
         Route::post('/examTimeTable','submitTimeTable')->name('examTimeTable');
     });
 
+    // Routes handled by FeesController
+    Route::controller(FeesController::class)->group(function () {
+        Route::get('/fee_history', 'feeHistory')->name('feeHistory');
+        Route::get('/fee_balance', 'feeBalance')->name('feeBalance');
+    });
 
     // Logout route (outside of groups)
     Route::get('/logout', function (Request $request) {
