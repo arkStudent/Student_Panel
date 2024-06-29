@@ -57,7 +57,7 @@ class AttendController extends Controller
             
 
         // Return the data to the attendTable view
-        return view('attendTable', compact('combinedRecords', 'from_date', 'to_date'));
+        return view('academic.attendTable', compact('combinedRecords', 'from_date', 'to_date'));
         // return view('attendTable', ['attendance' => $query,'day_off' => $query1]);
         // return view('attendTable', compact('attendance','request'));
     }

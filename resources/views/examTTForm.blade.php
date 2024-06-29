@@ -7,15 +7,15 @@
     }
 </style>
 <div class="container">
-    <h4 class="text-center">EXAM TIME TABLE </h4>
-    <h6 class="text-center mb-4">Academic_Year {{ session('academic_year') }} </h6>
+    <h4 class="text-center mb-4" style="text-decoration:underline">EXAM TIME TABLE </h4>
+    {{-- <h6 class="text-center mb-4">Academic_Year {{ session('academic_year') }} </h6> --}}
     <table border=1 style="border-collapse:collapse;" class="top-content table table-bordered">
         <tbody>
             <tr>
                 <td><strong>Standard: </strong>{{ session('std') }}</td>
                 <td><strong>Division: </strong>{{ session('dv') }}</td>
                 <td><strong>Branch ID: </strong>{{ session('branch_id') }}</td>
-                {{-- <td><strong>Academic Year: </strong>{{ session('academic_year') }}</td> --}}
+                <td><strong>Academic Year: </strong>{{ session('academic_year') }}</td>
             </tr>
         </tbody>
     </table>
@@ -32,7 +32,10 @@
             </select>
         </div>
         <div class="mb-3">
-            <center><button type="submit" class="btn btn-primary">Submit</button></center>
+            <center>
+                <button type="submit" class="btn btn-primary m-3">Submit</button>
+                <button type="reset" class="btn btn-danger m-0">Reset</button>
+            </center>
         </div>
     </form>
 </div>
