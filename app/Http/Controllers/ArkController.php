@@ -90,7 +90,12 @@ class ArkController extends Controller
 
         if ($user) {
             if ($data['password'] === $user->password) {
-                session(['student_id' => $user->student_id, 'academic_year' => $user->academic_year, 'name' => $user->name, 'branch_id' => $user->branch_id]);
+                session([
+                    'student_id' => $user->student_id, 
+                    'academic_year' => $user->academic_year,
+                    'name' => $user->name, 
+                    'branch_id' => $user->branch_id
+                    ]);
 
                 $additionalData = DB::table('ark_students')
                     ->where('student_id', $data['student_id'])
