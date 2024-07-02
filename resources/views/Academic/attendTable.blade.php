@@ -18,14 +18,14 @@ use Carbon\Carbon;
         <div class="card">
             <div class="card-header text-center">
                 <h4 class="card-title">Attendance <br>
-                    <span class="text-muted" style="font-size:17px;"> {{ Carbon::parse($from_date)->format('d-m-Y') }} 
-                        to {{ Carbon::parse($to_date)->format('d-m-Y') }}</span></h4>
+                    <span class="text-muted" style="font-size:17px;"> {{ Carbon::parse($request->from_date)->format('d-m-Y') }} 
+                        to {{ Carbon::parse($request->to_date)->format('d-m-Y') }}</span></h4>
             </div>
 
             <!-- /.card-header -->
             <div class="card-body">
                 <div>
-                    <table class="table table-bordered" style="border-collapse: collapse;">
+                    <table class="table " style="border-collapse: collapse;">
                         <thead class="text-center thead-dark">
                             <tr>
                                 <th>Sl.no</th>
@@ -35,8 +35,8 @@ use Carbon\Carbon;
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            @forelse ($combinedRecords as $record)
-                                <tr>
+                            @forelse ($attendance as $record)
+                                <tr style="background-color: {{ $record->day === 'Sunday' ? 'red' : 'white' }}; color:black;">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ isset($record->date) ? $record->date : $record->odate }}</td>
                                     <td>
@@ -47,10 +47,14 @@ use Carbon\Carbon;
                                         @endif
                                     </td>
                                     <td>
-                                        @if (isset($record->date))
+                                        @if (isset($record->atn))
                                             {{ $record->atn === 1 ? 'Present' : 'Absent' }}
                                         @else
-                                            Day Off
+                                            @if($record->day === 'Sunday')
+                                                <span>Day Off</span>
+                                            @else
+                                                {{ $record->remarks }}
+                                            @endif
                                         @endif
                                     </td>
                                 </tr>
@@ -63,7 +67,6 @@ use Carbon\Carbon;
                         </tbody>
                     </table>
                 </div>
-                {{-- <p class="text-center">No timetable data available.</p> --}}
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix text-center">
