@@ -15,13 +15,13 @@ class AttendController extends Controller
 
     public function submitAttendance(Request $request)
     {
-        // Validate the request data
+        // Validate the requested data
         $request->validate([
             'fdate' => 'required|date',
             'tdate' => 'required|date|after_or_equal:fdate',
         ]);
 
-        // Retrieve additional values from the session
+        // Retrieve values 
         $std = $request->session()->get('std');
         $dv = $request->session()->get('dv');
         $student_id = $request->session()->get('student_id');
@@ -29,36 +29,28 @@ class AttendController extends Controller
         $from_date = $request->input('fdate');
         $to_date = $request->input('tdate');
 
-        // Query the database
-        // $attendance = DB::table('ark_atten')
-        //     ->where('std', $std)
-        //     ->where('dv', $dv)
-        //     ->where('student_id', $student_id)
-        //     ->whereBetween('date', [$request->fdate, $request->tdate])
-        //     ->get();
-        $query = DB::select("
-                SELECT date,atn,id 
-                FROM ark_atten 
-                WHERE std = ? AND dv = ? AND student_id = ? AND date BETWEEN ? AND ? ORDER BY date",
-                [$std, $dv, $student_id, $from_date, $to_date]);
-
-        $query1 = DB::select("
-                SELECT odate,day,id 
-                FROM ark_dayoff 
-                WHERE  branch_id = ? AND odate BETWEEN ? AND ? ORDER BY odate",
-                [$branch_id, $from_date, $to_date]);
-
-            $attendance = $query;
-            $day_off = $query1;
-            $combinedRecords = array_merge($attendance, $day_off);
-            // return $query1;
-            // return $combinedRecords;
-
-            
+        //Query for Attendance
+        $attendance = DB::select("
+                    SELECT a.*, d.odate,d.day,d.remarks
+                    FROM ark_atten a LEFT JOIN ark_dayoff d
+                    ON 
+                        a.branch_id = d.branch_id 
+                        AND a.date = d.odate
+                    WHERE 
+                        a.std = ? AND a.dv = ? AND a.student_id = ? AND a.date BETWEEN ? AND ?
+                    UNION
+                    SELECT 
+                        NULL AS id, NULL AS class_id, NULL AS student_id, d.branch_id, NULL AS subject_id, NULL AS fid, 
+                        NULL AS std, NULL AS dv, NULL AS period, NULL AS from_time, NULL AS to_time, d.odate AS date, 
+                        NULL AS atn, NULL AS academic_year, NULL AS created_at, NULL AS updated_at,d.odate,d.day,d.remarks
+                    FROM 
+                        ark_dayoff d
+                    WHERE 
+                        d.branch_id = ? AND d.odate BETWEEN ? AND ?
+                    ORDER BY date", [$std, $dv, $student_id, $from_date, $to_date, $branch_id, $from_date, $to_date]);
+            // return $attendance;
 
         // Return the data to the attendTable view
-        return view('academic.attendTable', compact('combinedRecords', 'from_date', 'to_date'));
-        // return view('attendTable', ['attendance' => $query,'day_off' => $query1]);
-        // return view('attendTable', compact('attendance','request'));
+        return view('academic.attendTable', compact('attendance','request'));
     }
 }
