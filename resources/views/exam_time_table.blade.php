@@ -56,7 +56,7 @@ use Carbon\Carbon;
                             </tr>                               
                             @empty
                                 <tr class="text-center text-muted">
-                                    <td colspan="8">No Time Table</td>
+                                    <td colspan="8">No Exam Time Table</td>
                                 </tr>
                             @endforelse
                         </tbody>
