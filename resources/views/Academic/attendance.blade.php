@@ -1,8 +1,8 @@
 @extends('index')
 
 @section('content')
-    <div class="container m-5">
-        <h5 class="text-center">ATTENDANCE</h5>
+    <div class="container ">
+        <h4 class="text-center" style="text-decoration:underline">ATTENDANCE</h4>
         <form id="attendForm" method="post" action="{{ route('attend.table') }}">
             @csrf <!-- This will generate the CSRF token field -->
             <div class="mb-3">
@@ -14,7 +14,10 @@
                 <input type="date" class="form-control" id="tdate" name="tdate" required>
             </div>
             <div class="mb-3">
-                <center><button type="submit" class="btn btn-primary">Submit</button></center>
+                <center>
+                    <button type="submit" class="btn btn-primary m-3">Submit</button>
+                    <button type="reset" class="btn btn-danger m-0">Reset</button>
+                </center>
             </div>
         </form>
     </div>

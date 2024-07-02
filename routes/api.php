@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendController;
 use App\Http\Controllers\ArkController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FeesController;
 
 // Route for user endpoint
@@ -29,15 +30,20 @@ Route::middleware(['web'])->group(function () {
     });
 
      // Routes handled by SubjectController
-     Route::controller(SubjectController::class)->group(function () {
+    Route::controller(SubjectController::class)->group(function () {
         Route::get('/select-subject', [SubjectController::class, 'showSelectSubjectForm'])->name('lessonPlan');
         Route::post('/subjects', [SubjectController::class, 'getSubjectDetails'])->name('get-subject-details');
         Route::get('/subjects/{sub_id}', [SubjectController::class, 'showSubjectDetails'])->name('subjects.show');
-    //calender of event
         Route::get('/reports', [SubjectController::class, 'showReports'])->name('calenderOfEvent');
     });
 
-    // Routes handled by AttendController
+    // Routes handled by ExamController
+    Route::controller(ExamController::class)->group(function () {
+        Route::get('/examTTForm', 'index')->name('examTTForm');
+        Route::post('/examTimeTable','submitTimeTable')->name('examTimeTable');
+    });
+
+    // Routes handled by FeesController
     Route::controller(FeesController::class)->group(function () {
         Route::get('/fee_history', 'feeHistory')->name('feeHistory');
         Route::get('/fee_balance', 'feeBalance')->name('feeBalance');

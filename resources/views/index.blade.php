@@ -9,7 +9,7 @@
     <div class="pcoded-content">
 
         <!-- [ Main Content ] start -->
-        <div class="row">
+        <div class="row m-3">
             @yield('content')
 
         </div>
