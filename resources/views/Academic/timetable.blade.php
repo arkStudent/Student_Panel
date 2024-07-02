@@ -4,7 +4,7 @@
 
 <style>
     .subjects{
-        font-size: 15px;
+        font-size: 13px;
     }
 </style>
 
@@ -22,7 +22,7 @@
         <div class="card-body">
             @if (count($timetableData) > 0)
                 <div>
-                    <table class="table table-bordered" style="border-collapse: collapse;">
+                    <table class="table table-bordered" style="border-collapse: collapse; width: 100%;">
                         <thead class="text-center thead-dark">
                             <tr>
                                 <th>Day/<br>Period(Time)</th>
@@ -31,7 +31,7 @@
                                 @endforeach
                             </tr>
                         </thead>
-                        <tbody class="text-center">
+                        <tbody class="text-center" style="width: 100%;">
                             @foreach ($timetableData as $day => $dayData)
                                 <tr>
                                     <th>{{ $day }}</th>
