@@ -37,7 +37,7 @@ class FeesController extends Controller
             AND b.std = '$std'
             AND b.academic_year = '$academic_year'
         ORDER BY
-            a.pdate ASC";
+            a.month ASC";
 
         $feeHistory = DB::select($query);
 
