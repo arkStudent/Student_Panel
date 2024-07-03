@@ -6,7 +6,7 @@
         <h6><strong>Academic Year {{ session('academic_year') }}</strong></h6>
     </div>
 
-    @include('eventheader')
+    @include('academic.eventheader')
 
     <div class="container mt-3">
 

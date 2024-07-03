@@ -9,7 +9,7 @@
             <h4 class="card-title">Fees Balance</h4>
             
             {{-- File to show student details on top --}}
-            @include('fee_header')
+            @include('fees.fee_header')
         </div>
         <!-- /.card-header -->
 
