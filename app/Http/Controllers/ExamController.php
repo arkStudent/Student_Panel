@@ -18,7 +18,7 @@ class ExamController extends Controller
             WHERE branch_id = '$branch_id'
         ");
 
-        return view('examTTForm', compact('examTypes', 'request'));
+        return view('exam.examTTForm', compact('examTypes', 'request'));
     }
 
     public function submitTimeTable(Request $request)
@@ -41,7 +41,7 @@ class ExamController extends Controller
                 [$std, $examType, $branch_id, $acd_year]);
 
 
-        return view('exam_time_table',compact('examTimeDetails','request'));
+        return view('exam.exam_time_table',compact('examTimeDetails','request'));
 
     }
 
