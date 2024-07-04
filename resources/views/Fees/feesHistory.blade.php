@@ -8,6 +8,7 @@
             <h4 class="card-title">Fees Details</h4>
             @include('fees.fee_header')
         </div>
+        <!-- /.card header -->
         <div class="card-body">
             <div>
                 <table class="table table-bordered text-center" style="border-collapse: collapse;">
@@ -16,10 +17,10 @@
                             <th>Sl.no</th>
                             <th>Head</th>
                             <th>Month</th>
+                            <th>Paid Date</th>
                             <th>Total Fee</th>
                             <th>Paid Fee</th>
-                            <th>Balance Fee</th>
-                            <th>Paid Date</th>
+                            <th>Balance Fee</th>                      
                         </tr>
                     </thead>
                     <tbody>
@@ -32,10 +33,10 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $record->head }}</td>
                                 <td>{{ $record->month ?: '-' }}</td>
+                                <td>{{ $record->pdate ?: '-' }}</td>
                                 <td>{{ $record->total_amount }}</td>
                                 <td>{{ $record->paid_amount ?: '0' }}</td>
-                                <td>{{ $record->total_amount - $record->paid_amount }}</td>
-                                <td>{{ $record->pdate ?: '-' }}</td>
+                                <td>{{ $record->total_amount - $record->paid_amount }}</td>                        
                             </tr>
                             @php
                                 $TotalAmount += $record->total_amount;
@@ -49,16 +50,31 @@
 
                         {{-- Total count row --}}
                         <tr>
-                            <td colspan="3"><strong>Total</strong></td>
+                            <td colspan="4"><strong>Total</strong></td>
                             <td><strong>{{ $TotalAmount }}</strong></td>
                             <td><strong>{{ $PaidAmount }}</strong></td>
                             <td><strong>{{ $TotalAmount - $PaidAmount }}</strong></td>
-                            <td></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <!-- /.card body -->
+        <div class="card-footer clearfix text-center">
+            <button onclick="printDiv('printDiv')" class="btn btn-primary">Print</button>
+        </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+@endpush
