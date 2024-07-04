@@ -28,7 +28,7 @@
                     <div class="row align-items-center ">
                         <div class="col-md-12">
                             <div class="card-body">
-                                <h4 class="mb-3 f-w-400">login</h4>
+                                <h4 class="mb-3 f-w-400">Login</h4>
                                 <hr>
                                 <div class="form-group mb-3">
                                     <input type="text" class="form-control" id="student_id" name="student_id"
@@ -40,7 +40,7 @@
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary mb-4">login</button>
                                 <hr>
-                                <a href="{{ route('forgot') }}">Forgot Password</a>
+                                <a href="{{ route('forgot') }}" style="text-decoration:underline;">Forgot Password</a>
                             </div>
                         </div>
                     </div>
@@ -64,11 +64,6 @@
         var student_id = document.getElementById('student_id').value;
         var password = document.getElementById('password').value;
 
-        // console.log('Payload:', {
-        //     student_id: student_id,
-        //     password: password
-        // });
-
         fetch('/api/login', {
                 method: 'POST',
                 headers: {
@@ -90,7 +85,7 @@
                 return response.json();
             })
             .then(data => {
-                window.location.href = "{{ route('index') }}";
+                window.location.href = "{{ route('dashboard') }}";
             })
             .catch(error => {
                 const errorMessage = Object.values(error).flat().join('\n');
@@ -98,9 +93,5 @@
             });
     });
 </script>
-
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script> --}}
 
 </html>

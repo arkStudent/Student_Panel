@@ -14,14 +14,13 @@
 
             <ul class="nav pcoded-inner-navbar ">
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><span class="pcoded-micon"><i
+                    <a href="{{ route('dashboard') }}" class="nav-link"><span class="pcoded-micon"><i
                                 class="bi bi-house-door"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link">
                         <span class="pcoded-micon"><i class="bi bi-suitcase-lg"></i></span>
                         <span class="pcoded-mtext">Academic</span>
-                        {{-- <i class="bi bi-caret-right dropdown-icon"></i> --}}
                     </a>
                     <ul class="pcoded-submenu">
                         <li><a href="{{ route('attend.index') }}" target="_self"><i
@@ -42,7 +41,6 @@
                     <a href="#!" class="nav-link">
                         <span class="pcoded-micon"><i class="bi bi-pen"></i></span>
                         <span class="pcoded-mtext">Exam</span>
-                        {{-- <i class="bi bi-caret-right dropdown-icon"></i> --}}
                     </a>
                     <ul class="pcoded-submenu">
                         <li><a href="{{ route('examTTForm') }}" target="_self"><i class="bi bi-arrow-right items"></i>Exam
@@ -57,7 +55,6 @@
                     <a href="#!" class="nav-link">
                         <span class="pcoded-micon"><i class="bi bi-currency-rupee"></i></span>
                         <span class="pcoded-mtext">Fees</span>
-                        {{-- <i class="bi bi-caret-right dropdown-icon"></i> --}}
                     </a>
                     <ul class="pcoded-submenu">
                         <li><a href="{{ route('login') }}" target="_self"><i class="bi bi-arrow-right items"></i>Pay
@@ -72,7 +69,6 @@
                     <a href="#!" class="nav-link">
                         <span class="pcoded-micon"><i class="bi bi-people"></i></span>
                         <span class="pcoded-mtext">Parents/ Students</span>
-                        {{-- <i class="bi bi-caret-right dropdown-icon"></i> --}}
                     </a>
                     <ul class="pcoded-submenu">
                         <li><a href="{{ route('login') }}" target="_self"><i class="bi bi-arrow-right items"></i>Apply
@@ -90,7 +86,7 @@
         </div>
     </div>
 </nav>
-<script>
+{{-- <script>
     document.querySelectorAll('.pcoded-hasmenu > a').forEach(menu => {
         menu.addEventListener('click', function(event) {
             event.preventDefault(); // Prevent default action to allow toggling
@@ -103,5 +99,5 @@
             console.log('New class list:', parent.classList);
         });
     });
-</script>
+</script> --}}
 <!-- [ navigation menu ] end -->

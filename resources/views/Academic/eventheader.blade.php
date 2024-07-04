@@ -8,7 +8,6 @@
         <tbody>
             <tr>
                 <td><strong>Branch Name: </strong>{{ session('branch_name') }}</td>
-                {{-- <td><strong>Academic Year: </strong>{{ session('academic_year') }}</td> --}}
                 <td><strong>H.M: </strong>{{ session('hm') }}</td>
                 <td><strong>Class Teacher: </strong>{{ session('class_teacher') }}</td>
             </tr>
