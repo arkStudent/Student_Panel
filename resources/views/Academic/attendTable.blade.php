@@ -18,8 +18,8 @@ use Carbon\Carbon;
         <div class="card">
             <div class="card-header text-center">
                 <h4 class="card-title">Attendance <br>
-                    <span class="text-muted" style="font-size:17px;"> {{ Carbon::parse($request->from_date)->format('d-m-Y') }} 
-                        to {{ Carbon::parse($request->to_date)->format('d-m-Y') }}</span></h4>
+                    <span class="text-muted" style="font-size:17px;"> {{ Carbon::parse($from_date)->format('d-m-Y') }} 
+                        to {{ Carbon::parse($to_date)->format('d-m-Y') }}</span></h4>
             </div>
 
             <!-- /.card-header -->
@@ -36,7 +36,7 @@ use Carbon\Carbon;
                         </thead>
                         <tbody class="text-center">
                             @forelse ($attendance as $record)
-                                <tr style="background-color: {{ $record->day === 'Sunday' ? 'red' : 'white' }}; color:black;">
+                                <tr style="background-color: {{ $record->day === 'Sunday' || isset($record->remarks) ? 'orange' : 'white' }}; color:black;">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ isset($record->date) ? $record->date : $record->odate }}</td>
                                     <td>
@@ -51,7 +51,7 @@ use Carbon\Carbon;
                                             {{ $record->atn === 1 ? 'Present' : 'Absent' }}
                                         @else
                                             @if($record->day === 'Sunday')
-                                                <span>Day Off</span>
+                                                <span>Holiday</span>
                                             @else
                                                 {{ $record->remarks }}
                                             @endif
