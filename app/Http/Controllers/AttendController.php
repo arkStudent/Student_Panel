@@ -51,6 +51,6 @@ class AttendController extends Controller
             // return $attendance;
 
         // Return the data to the attendTable view
-        return view('academic.attendTable', compact('attendance','request'));
+        return view('academic.attendTable', compact('attendance','from_date','to_date'));
     }
 }
