@@ -141,7 +141,6 @@
                                 <li><a href="{{ route('change') }}" class="dropdown-item"><i class="bi bi-key"></i> Change Password</a></li>
                                 <li><a href="#" class="dropdown-item"><i class="bi bi-check-circle"></i> Activate Account Request</a></li>
                                 <li><a href="#" class="dropdown-item"><i class="bi bi-x-circle"></i> Deactivate Account</a></li>
-                                <li><a href="{{ route('forgot') }}" class="dropdown-item"><i class="bi bi-eye-slash"></i> Forgot Password</a></li>
                                 <li><a href="{{ route('logout') }}" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
                             </ul>
                         </div>
