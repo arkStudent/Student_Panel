@@ -75,6 +75,7 @@ use Carbon\Carbon;
                         </tbody>
                     </table>
                 </div>
+                {{-- <p class="text-center">No timetable data available.</p> --}}
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix text-center">

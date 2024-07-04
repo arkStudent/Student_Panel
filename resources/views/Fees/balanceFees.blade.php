@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container mt-3">
+    {{-- <h3 class="text-center">Time Table</h3> --}}
     <div class="card">
         <div class="card-header text-center">
             <h4 class="card-title">Fees Balance</h4>

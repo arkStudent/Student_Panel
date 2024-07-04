@@ -4,7 +4,7 @@
     <div class="container ">
         <h4 class="text-center" style="text-decoration:underline">ATTENDANCE</h4>
         <form id="attendForm" method="post" action="{{ route('attend.table') }}">
-            @csrf
+            @csrf <!-- This will generate the CSRF token field -->
             <div class="mb-3">
                 <label for="fdate" class="form-label">From Date</label>
                 <input type="date" class="form-control" id="fdate" name="fdate" required>
