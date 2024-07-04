@@ -75,7 +75,7 @@ class FeesController extends Controller
                     'paid_amount' => 0,
                     'pdate' => null
                 ];
-            }            
+            }
         }
 
         // Merge back the Monthly Fees data with other fee records
@@ -117,7 +117,7 @@ class FeesController extends Controller
         // dd($cat_id);
 
         // Constructing the SQL query
-        if(!$std){
+        if (!$std) {
             $query = "SELECT
             b.head,
             CASE WHEN b.head_id = 16 THEN (b.amount * 12) ELSE b.amount END AS total_amount,
@@ -138,9 +138,9 @@ class FeesController extends Controller
         WHERE
             b.branch_id = '$branch_id'
             AND b.academic_year = '$academic_year'";
-        $feeBal = DB::select($query);
-        }else{
-        $query = "SELECT
+            // $feeBal = DB::select($query);
+        } else {
+            $query = "SELECT
             b.head,
             CASE WHEN b.head_id = 16 THEN (b.amount * 12) ELSE b.amount END AS total_amount,
             a.amount AS paid_amount
@@ -162,9 +162,8 @@ class FeesController extends Controller
             AND b.std = '$std'
             AND b.academic_year = '$academic_year'
             AND b.category_id IN (" . implode(',', $cat_id) . ")";
+        }
         $feeBal = DB::select($query);
-    }
-
         return view('fees.balanceFees', compact('academic_year', 'feeBal', 'category'));
     }
 }
