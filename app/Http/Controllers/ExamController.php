@@ -34,14 +34,21 @@ class ExamController extends Controller
         $acd_year = $request->session()->get('academic_year');
         $examType = $request->input('exam_type');
 
+        $branch_name = DB::table('ark_branches')
+                        ->select('sname')
+                        ->where('id', $branch_id)
+                        ->first();
+                // dd($branch_name);
+
         $examTimeDetails = DB::select("
                 SELECT *
                 FROM sal_exam_tt 
-                WHERE std = ? AND ex_id = ? AND branch_id = ? AND academic_year = ? ",
-                [$std, $examType, $branch_id, $acd_year]);
+                WHERE std = '$std' AND ex_id = '$examType' AND branch_id = '$branch_id' AND academic_year = '$acd_year' 
+                ORDER BY `date`");
 
+        // dd($examTimeDetails);
 
-        return view('exam.exam_time_table',compact('examTimeDetails','request'));
+        return view('exam.exam_time_table',compact('examTimeDetails','branch_name'));
 
     }
 
