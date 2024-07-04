@@ -32,14 +32,15 @@
                                 <hr>
                                 <div class="form-group mb-3">
                                     <input type="text" class="form-control" id="student_id" name="student_id"
-                                        placeholder="Student Id">
+                                        placeholder="Student Id" required>
                                 </div>
                                 <div class="form-group mb-4">
                                     <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Password">
+                                        placeholder="Password" required>
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary mb-4">login</button>
                                 <hr>
+                                <a href="{{ route('forgot') }}">Forgot Password</a>
                             </div>
                         </div>
                     </div>
