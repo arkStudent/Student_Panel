@@ -94,7 +94,7 @@ class ArkController extends Controller
                     'student_id' => $user->student_id, 
                     'academic_year' => $user->academic_year,
                     'name' => $user->name, 
-                    'branch_id' => $user->branch_id
+                    'branch_id' => $user->branch_id,
                     ]);
 
                 $additionalData = DB::table('ark_students')
@@ -142,19 +142,23 @@ class ArkController extends Controller
     public function forgotPass(Request $request)
     {
         $request->validate([
+            's_id' => 'required',
             'pass' => 'required',
             'cpass' => 'required'
         ]);
-        $student_id = Session::get('student_id');
+        $student_id = $request->s_id;
+        // dd($student_id);
+
         $user = DB::table('ark_student_info')
             ->where('student_id', $student_id)
             ->first();
-        if ($user->password === $request->pass) {
-            return response()->json(['error' => 'Old password is same as new password'], 400);
-        }
-        if ($request->pass !== $request->cpass) {
-            return response()->json(['error' => 'Password and confirm password does not match'], 400);
-        }
+            if (!$user) {
+                return response()->json(['error' => 'Incorrect student Id'], 400);
+            } else if ($user->password === $request->pass) {
+                return response()->json(['error' => 'Old password is same as new password'], 400);
+            } else if ($request->pass !== $request->cpass) {
+                return response()->json(['error' => 'Password and confirm password does not match'], 400);
+            }
         DB::table('ark_student_info')
             ->where('student_id', $student_id)
             ->update(['password' => $request->pass]);
