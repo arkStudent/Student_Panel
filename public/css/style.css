@@ -5091,11 +5091,6 @@ input[type="button"].btn-block {
     border-bottom-left-radius: 2px;
 }
 
-.card {
-    /* display: inline-flex; */
-    /* width: auto; */
-}
-
 .card-body {
     flex: 1 1 auto;
     padding: 1.25rem;
