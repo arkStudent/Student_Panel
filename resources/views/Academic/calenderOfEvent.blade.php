@@ -1,9 +1,19 @@
 @extends('index')
 
 @section('content')
+<style>
+    .table th,
+    .table td {
+        white-space: normal;  
+        max-width: 400px;  
+    }
+</style>
+<div class="card">
+    <div class="card-body">
+<span>
     <div class="container text-center">
-        <h3>Calender of Event</h3>
-        <h6><strong>Academic Year {{ session('academic_year') }}</strong></h6>
+        <h4 style="margin-bottom: 10px; text-decoration: underline;">Calender of events</h4> <!-- Adding margin-bottom to create space -->
+        <h6 style="margin-bottom: 20px;"><strong style="font-size: 17px; color: #888;">Academic Year : {{ session('academic_year') }}</strong></h6> <!-- Adding margin-bottom to create more space -->
     </div>
 
     @include('academic.eventheader')
@@ -27,18 +37,22 @@
                         <td>{{ $activity->activity }}</td>
                         <td>{{ $activity->description }}</td>
                         <td>{{ $activity->date }}</td>
-                        <td>
+                        <td> 
                             @if ($activity->files)
                                 <a href="{{ asset($activity->files) }}" download>
-                                    <i class="fa fa-download"></i>
-                                </a>
-                            @else
-                                No records found.
-                            @endif
-                        </td>
-                    </tr>
+                                        <i class="fa fa-download"></i> 
+                                    </a>
+                                @else
+                                    No file
+                                @endif
+                            </td> 
+                        </tr>
+                    
                 @endforeach
             </tbody>
         </table>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+        </div>
     </div>
 @endsection
