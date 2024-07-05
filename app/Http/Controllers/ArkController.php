@@ -142,25 +142,29 @@ class ArkController extends Controller
     public function forgotPass(Request $request)
     {
         $request->validate([
+            'dob' => 'required',
             's_id' => 'required',
             'pass' => 'required',
             'cpass' => 'required'
         ]);
         $student_id = $request->s_id;
-        // dd($student_id);
+        $dob = $request->dob;
 
         $user = DB::table('ark_student_info')
             ->where('student_id', $student_id)
             ->first();
             if (!$user) {
-                return response()->json(['error' => 'Incorrect student Id'], 400);
+                return response()->json(['error' => 'Incorrect Student ID'], 400);
+            } else if ($user->dob !== $dob) {
+                return response()->json(['error' => 'Incorrect date of birth'], 400);
             } else if ($user->password === $request->pass) {
-                return response()->json(['error' => 'Old password is same as new password'], 400);
+                return response()->json(['error' => 'New password is same as old password'], 400);
             } else if ($request->pass !== $request->cpass) {
                 return response()->json(['error' => 'Password and confirm password does not match'], 400);
             }
         DB::table('ark_student_info')
             ->where('student_id', $student_id)
+            ->where('dob', $dob)
             ->update(['password' => $request->pass]);
         return response()->json(['message' => 'Password set successfully'], 200);
     }
