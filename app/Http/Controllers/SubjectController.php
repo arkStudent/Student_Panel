@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\Subject; 
 use App\Models\CalenderEvent;
 use App\Models\Exam;
@@ -67,6 +68,13 @@ class SubjectController extends Controller
 
 
     //lesson plan
+=======
+use App\Models\Subject;
+use App\Models\CalenderEvent; 
+class SubjectController extends Controller
+
+{
+>>>>>>> origin/master
     public function showSelectSubjectForm()
     {
         $subjects = Subject::select('sub_id', 'sname')->distinct()->get();
@@ -120,6 +128,7 @@ class SubjectController extends Controller
         return view('academic.lessonPlanRepo', compact('fname', 'academic_year', 'std', 'dv', 'lessons'));
     }
 
+<<<<<<< HEAD
     //calender Of Events table
     public function showReports(Request $request)
 {
@@ -210,6 +219,43 @@ public function showExamDetails($branch_id)
     return view('Exams.exam_details', compact('student_id', 'sname', 'academic_year', 'std', 'dv', 'examMarks'));
 }
 
+=======
+    //calender Of Events
+    public function showReports(Request $request)
+    {
+        // Retrieve session data for academic year and branch ID
+        $academic_year = $request->session()->get('academic_year');
+        $branch_id = $request->session()->get('branch_id');
+
+        // Fetch branch name based on branch_id (assuming 'name' is the attribute)
+        $branch = CalenderEvent::find($branch_id);
+        $branch_name = $branch ? $branch->name : 'N/A';
+
+        // Example: Fetch H.M name and Class Teacher name based on branch_id
+        $hm =  "";
+        $class_teacher =  "";
+
+        // Fetch activities for the current academic year and branch_id
+        $activities = CalenderEvent::where('academic_year', $academic_year)
+                                   ->where('branch_id', $branch_id)
+                                   ->get();
+
+        // Prepare data to pass to the view
+        $data = [
+            'boxData' => [
+                'branch_name' => $branch_name,
+                'academic_year' => $academic_year,
+                'hm' => $hm,
+                'class_teacher' => $class_teacher,
+            ],
+            'activities' => $activities,
+        ];
+
+        // Return view with data
+        return view('academic.calenderOfEvent', $data);
+    }
+ 
+>>>>>>> origin/master
 }
 
 

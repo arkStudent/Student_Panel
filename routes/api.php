@@ -35,11 +35,14 @@ Route::middleware(['web'])->group(function () {
         Route::post('/subjects', [SubjectController::class, 'getSubjectDetails'])->name('get-subject-details');
         Route::get('/subjects/{sub_id}', [SubjectController::class, 'showSubjectDetails'])->name('subjects.show');
         Route::get('/reports', [SubjectController::class, 'showReports'])->name('calenderOfEvent');
+<<<<<<< HEAD
      //Exam
      Route::get('/select-exam', [SubjectController::class, 'showSelectExamForm'])->name('selectexam');
      Route::post('/exams', [SubjectController::class, 'getExamDetails'])->name('get-exam-details');
      Route::get('/exam/{branch_id}', [SubjectController::class, 'showExamDetails'])->name('exam.show');
  
+=======
+>>>>>>> origin/master
     });
 
     // Routes handled by ExamController
