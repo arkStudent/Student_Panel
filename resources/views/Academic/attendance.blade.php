@@ -1,3 +1,4 @@
+{{-- lubna code --}}
 @extends('index')
 
 @section('content')

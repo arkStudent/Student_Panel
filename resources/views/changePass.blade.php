@@ -1,3 +1,4 @@
+{{-- tasmiya code --}}
 @extends('index')
 
 @section('content')
@@ -50,7 +51,7 @@
                     const msg = Object.values(error).flat().join('\n');
                     alert(msg);
                 });
-                location.reload();
+            location.reload();
         });
     </script>
 @endsection

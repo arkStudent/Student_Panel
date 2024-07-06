@@ -1,3 +1,4 @@
+{{-- sana code --}}
 @extends('index')
 
 @section('content')
@@ -5,11 +6,6 @@
     .top-content{
         background-color: #d9d9d9;
     }
-    /* .form-control {
-        max-width: 1000px; 
-        margin: 0 auto;  
-    }
-      */
 </style>
 <div class="container text-center">
     <h3>Result Form</h3>
@@ -24,7 +20,6 @@
                     <tbody>
                         <tr>
                             <td><strong>Branch Name: </strong>{{ $branch->sname }}</td>
-                            {{-- <td><strong>Branch ID: </strong>{{ $branch->id }}</td>  --}}
                             <td><strong>Standard: </strong>{{ session('std') }}</td>
                             <td><strong>Division: </strong>{{ session('dv') }}</td>
                         </tr>
