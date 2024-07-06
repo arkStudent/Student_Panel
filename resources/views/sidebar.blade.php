@@ -45,11 +45,7 @@
                     <ul class="pcoded-submenu">
                         <li><a href="{{ route('examTTForm') }}" target="_self"><i class="bi bi-arrow-right items"></i>Exam
                                 Time Table</a></li>
-<<<<<<< HEAD
                         <li><a href="{{ route('selectexam') }}" target="_self"><i
-=======
-                        <li><a href="{{ route('login') }}" target="_self"><i
->>>>>>> origin/master
                                     class="bi bi-arrow-right items"></i>Exam-Wise Result</a></li>
                         <li><a href="{{ route('login') }}" target="_self"><i
                                     class="bi bi-arrow-right items"></i>Progress Card</a></li>
