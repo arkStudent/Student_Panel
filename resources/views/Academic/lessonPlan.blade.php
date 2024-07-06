@@ -1,3 +1,4 @@
+{{-- sana code  --}}
 @extends('index')
 
 @section('content')

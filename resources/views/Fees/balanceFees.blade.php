@@ -1,8 +1,10 @@
+{{-- tasmiya code --}}
 @extends('index')
 
 @section('content')
 
 <div class="container mt-3">
+    {{-- <h3 class="text-center">Time Table</h3> --}}
     <div class="card">
         <div class="card-header text-center">
             <h4 class="card-title">Fees Balance</h4>
@@ -60,20 +62,8 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix text-center">
-            <button onclick="printDiv('printDiv')" class="btn btn-primary">Print</button>
+            <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
         </div>
     </div>
 </div>
 @endsection
-
-@push('scripts')
-    <script>
-        function printDiv(divName) {
-            var printContents = document.getElementById(divName).innerHTML;
-            var originalContents = document.body.innerHTML;
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-        }
-    </script>
-@endpush

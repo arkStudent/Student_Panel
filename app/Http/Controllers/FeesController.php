@@ -1,4 +1,5 @@
 <?php
+// tasmiya code
 
 namespace App\Http\Controllers;
 
@@ -90,8 +91,10 @@ class FeesController extends Controller
         usort($feeHistory, function ($a, $b) use ($months) {
             return array_search($a->month, $months) <=> array_search($b->month, $months);
         });
+
         return view('fees.feesHistory', compact('academic_year', 'feeHistory', 'category'));
     }
+
 
     // function to fetch balance fees
     public function feeBalance()

@@ -66,10 +66,12 @@
             </div>
         </div>
     </div>
-</div>
 
 @endsection
 
 @section('scripts')
+<<<<<<< HEAD
     <!-- You can add scripts here if needed -->
+=======
+>>>>>>> 9c0a83b00f7e3b50ee61b92977d3c24bc8033b5b
 @endsection

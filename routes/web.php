@@ -14,7 +14,7 @@ Route::get('/dashboard', function () {
     // echo "<pre>";
     // print_r($value);
     // echo "</pre>";
-})->name('dashboard');
+})->name('index');
 
 Route::get('/change_password', function () {
     return view('changePass');

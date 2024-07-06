@@ -1,4 +1,5 @@
 <?php
+// lubna code 
 
 namespace App\Http\Controllers;
 
@@ -20,7 +21,7 @@ class ExamController extends Controller
             WHERE branch_id = '$branch_id'
         ");
 
-        return view('exam.examTTForm', compact('examTypes', 'request'));
+        return view('exams.examTTForm', compact('examTypes', 'request'));
     }
 
     public function submitTimeTable(Request $request)
@@ -37,7 +38,7 @@ class ExamController extends Controller
         $examType = $request->input('exam_type');
 
         $branch_name = DB::table('ark_branches')
-                        ->select('sname')
+                        ->select('name')
                         ->where('id', $branch_id)
                         ->first();
                 // dd($branch_name);
@@ -50,7 +51,7 @@ class ExamController extends Controller
 
         // dd($examTimeDetails);
 
-        return view('exam.exam_time_table',compact('examTimeDetails','branch_name'));
+        return view('exams.exam_time_table',compact('examTimeDetails','branch_name'));
 
     }
 

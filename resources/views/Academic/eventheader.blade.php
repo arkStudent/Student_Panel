@@ -1,5 +1,6 @@
+{{-- sana code --}}
 <style>
-    .top-content{
+    .top-content {
         background-color: #d9d9d9;
     }
     

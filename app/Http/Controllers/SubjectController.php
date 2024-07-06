@@ -1,4 +1,5 @@
 <?php
+// sana code
 
 namespace App\Http\Controllers;
 
@@ -69,15 +70,15 @@ class SubjectController extends Controller
 {
     $academic_year = $request->session()->get('academic_year');
     $branch_id = $request->session()->get('branch_id');
-     
+
     $branch_name = DB::table('ark_branches')
                     ->where('id', $branch_id)
                     ->value('name'); 
     $hm = '';  
     $class_teacher = '';   
     $activities = CalenderEvent::where('academic_year', $academic_year)
-                               ->where('branch_id', $branch_id)
-                               ->get(); 
+                                ->where('branch_id', $branch_id)
+                                ->get(); 
     
     $data = [
         'branch' => (object) ['id' => $branch_id, 'name' => $branch_name],
@@ -86,7 +87,7 @@ class SubjectController extends Controller
         'class_teacher' => $class_teacher,
         'activities' => $activities,
     ];
-     
+    
     return view('academic.calenderOfEvent', $data);
 }
  
