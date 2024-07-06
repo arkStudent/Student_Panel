@@ -1,4 +1,5 @@
 <?php
+// lubna code 
 
 namespace App\Http\Controllers;
 
@@ -35,7 +36,7 @@ class ExamController extends Controller
         $examType = $request->input('exam_type');
 
         $branch_name = DB::table('ark_branches')
-                        ->select('sname')
+                        ->select('name')
                         ->where('id', $branch_id)
                         ->first();
                 // dd($branch_name);

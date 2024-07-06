@@ -1,5 +1,5 @@
 <?php
-
+// tasmiya code
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -69,6 +69,7 @@ class ArkController extends Controller
         return view('academic.timetable', compact('std', 'dv', 'timetableData', 'periodList', 'academic_year'));
     }
 
+    // login function created by lubna
     public function login(Request $request)
     {
         $validatedData = Validator::make($request->all(), [

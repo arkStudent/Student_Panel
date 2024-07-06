@@ -6,6 +6,10 @@
     .subjects{
         font-size: 13px;
     }
+    .no-subjects {
+        font-weight: bold;
+        text-align: center;
+    }
 </style>
 
 <div class="container mt-3">
@@ -20,7 +24,21 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            @if (count($timetableData) > 0)
+            @php
+                $hasSubjects = false;
+            @endphp
+            @foreach ($timetableData as $day => $dayData)
+                @foreach ($dayData as $periodData)
+                    @if (isset($periodData['subjects']) && count($periodData['subjects']) > 0)
+                        @php
+                            $hasSubjects = true;
+                            break 2;
+                        @endphp
+                    @endif
+                @endforeach
+            @endforeach
+
+            @if ($hasSubjects)
                 <div>
                     <table class="table table-bordered" style="border-collapse: collapse; width: 100%;">
                         <thead class="text-center thead-dark">
@@ -33,45 +51,47 @@
                         </thead>
                         <tbody class="text-center" style="width: 100%;">
                             @foreach ($timetableData as $day => $dayData)
-                                <tr>
-                                    <th>{{ $day }}</th>
-                                    @foreach ($dayData as $periodData)
-                                        <td class="subjects">
-                                            @if (isset($periodData['subjects']) && count($periodData['subjects']) > 0)
-                                                @foreach ($periodData['subjects'] as $subject)
-                                                    {{ $subject }}<br>
-                                                @endforeach
-                                            @else
-                                                No subjects scheduled
-                                            @endif
-                                        </td>
-                                    @endforeach
-                                </tr>
+                                @php
+                                    $dayHasSubjects = false;
+                                @endphp
+                                @foreach ($dayData as $periodData)
+                                    @if (isset($periodData['subjects']) && count($periodData['subjects']) > 0)
+                                        @php
+                                            $dayHasSubjects = true;
+                                            break;
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                
+                                @if ($dayHasSubjects)
+                                    <tr>
+                                        <th>{{ $day }}</th>
+                                        @foreach ($dayData as $periodData)
+                                            <td class="subjects">
+                                                @if (isset($periodData['subjects']) && count($periodData['subjects']) > 0)
+                                                    @foreach ($periodData['subjects'] as $subject)
+                                                        {{ $subject }}<br>
+                                                    @endforeach
+                                                @else
+                                                    No subjects scheduled
+                                                @endif
+                                            </td>
+                                        @endforeach
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             @else
-                <p class="text-center">No timetable data available.</p>
+                <p class="no-subjects">No subjects scheduled for any day.</p>
             @endif
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix text-center">
-            <button onclick="printDiv('printDiv')" class="btn btn-primary">Print</button>
+            <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
         </div>
     </div>
 </div>
 
 @endsection
-
-@push('scripts')
-    <script>
-        function printDiv(divName) {
-            var printContents = document.getElementById(divName).innerHTML;
-            var originalContents = document.body.innerHTML;
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-        }
-    </script>
-@endpush
