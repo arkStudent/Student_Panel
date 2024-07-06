@@ -20,19 +20,18 @@
     <div class="container mt-3">
         {{-- <h3 class="text-center">Time Table</h3> --}}
         <div class="card">
-            <div class="card-header text-center">
-                <h4 class="card-title">Exam Time Table <br>
-                    <span class="text-muted" style="font-size:17px;">Academic year {{ session('academic_year') }}</span>
+            <div class="card-header">
+                <h4 class="card-title text-center">Exam Time Table <br>
+                    <span class="text-muted text-center" style="font-size:17px;">Academic year {{ session('academic_year') }}</span>
                 </h4>
                 <div class="container">
                     <table border=1 style="border-collapse:collapse;" class="top-content table table-bordered">
                         <tbody>
                             <tr>
-                                <td><strong>Standard: </strong>{{ session('std') }}</td>
-                                <td><strong>Division: </strong>{{ session('dv') }}</td>
                                 <td><strong>Branch Name:
                                     </strong>{{ isset($branch_name->name) ? $branch_name->name : '-' }}</td>
-                                <td><strong>Academic Year: </strong>{{ session('academic_year') }}</td>
+                                <td><strong>Standard: </strong>{{ session('std') }}</td>
+                                <td><strong>Division: </strong>{{ session('dv') }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -52,7 +51,6 @@
                                 <th rowspan="2">I Marks</th>
                                 <th rowspan="2">W Marks</th>
                             </tr>
-
                             <tr>
                                 <th>From</th>
                                 <th>To</th>

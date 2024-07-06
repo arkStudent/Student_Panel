@@ -6,8 +6,8 @@
 <div class="container mt-3">
     {{-- <h3 class="text-center">Time Table</h3> --}}
     <div class="card">
-        <div class="card-header text-center">
-            <h4 class="card-title">Fees Balance</h4>
+        <div class="card-header">
+            <h4 class="card-title text-center">Fees Balance</h4>
             
             {{-- File to show student details on top --}}
             @include('fees.fee_header')

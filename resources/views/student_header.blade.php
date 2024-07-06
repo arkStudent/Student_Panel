@@ -8,7 +8,7 @@
         <tbody>
             <tr>
                 <td><strong>Name: </strong>{{ session('name') }}</td>
-                <td><strong>ID: </strong>{{ session('student_id') }}</td>
+                <td><strong>Student ID: </strong>{{ session('student_id') }}</td>
                 <td><strong>Standard: </strong>{{ session('std') }}</td>
                 <td><strong>Division: </strong>{{ session('dv') }}</td>
             </tr>

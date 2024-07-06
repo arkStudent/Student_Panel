@@ -4,8 +4,8 @@
 
 <div class="container mt-3">
     <div class="card">
-        <div class="card-header text-center">
-            <h4 class="card-title">Fees Details</h4>
+        <div class="card-header">
+            <h4 class="card-title text-center">Fees Details</h4>
             @include('fees.fee_header')
         </div>
         <!-- /.card header -->
