@@ -17,9 +17,9 @@
         {{-- <h3 class="text-center">Time Table</h3> --}}
         <div class="card">
             <div class="card-header text-center">
-                <h4 class="card-title">Attendance <br>
-                    <span class="text-muted" style="font-size:17px;"> {{ Carbon::parse($from_date)->format('d-m-Y') }}
-                        to {{ Carbon::parse($to_date)->format('d-m-Y') }}</span>
+                <h4 class="card-title">Attendance Of <span style="color:rgb(29, 121, 43)">{{ session('name') }}</span><br>
+                    <span class="text-muted" style="font-size:17px;"> <span style="color:rgb(29, 121, 43)">From</span> {{ Carbon::parse($from_date)->format('d-m-Y') }}
+                    <span style="color:rgb(29, 121, 43)">To</span> {{ Carbon::parse($to_date)->format('d-m-Y') }}</span>
                 </h4>
             </div>
 
