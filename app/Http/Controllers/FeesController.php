@@ -103,21 +103,16 @@ class FeesController extends Controller
         $stud_id = session('student_id');
         $std = session('std');
         $branch_id = session('branch_id');
-        $category = DB::table('sal_fees_trans')
-            ->select('category')
+        $results = DB::table('sal_fees_trans')
+            ->select('category', 'category_id')
             ->distinct()
             ->where('student_id', $stud_id)
-            ->pluck('category')->toArray();
-
-        $cat_id = DB::table('sal_fees_trans')
-            ->select('category_id')
-            ->distinct()
-            ->where('student_id', $stud_id)
-            ->pluck('category_id')->toArray();
+            ->get();
+        $category = $results->pluck('category')->toArray();
+        $cat_id = $results->pluck('category_id')->toArray();
 
         // dd($cat_id);
 
-        // Constructing the SQL query
         if (!$std && $cat_id) {
             $query = "SELECT
             b.head,
@@ -183,7 +178,6 @@ class FeesController extends Controller
         WHERE
             b.branch_id = '$branch_id'
             AND b.academic_year = '$academic_year'";
-            // -- AND b.std = '$std'";
         } else {
             $query = "SELECT
             b.head,
