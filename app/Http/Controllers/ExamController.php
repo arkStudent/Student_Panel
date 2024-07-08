@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\ExamDetails; 
+use App\Models\ExamDetails;
 use App\Models\Exam;
 use Illuminate\Support\Facades\Session;
 
@@ -38,10 +38,10 @@ class ExamController extends Controller
         $examType = $request->input('exam_type');
 
         $branch_name = DB::table('ark_branches')
-                        ->select('name')
-                        ->where('id', $branch_id)
-                        ->first();
-                // dd($branch_name);
+            ->select('name')
+            ->where('id', $branch_id)
+            ->first();
+        // dd($branch_name);
 
         $examTimeDetails = DB::select("
                 SELECT *
@@ -51,8 +51,7 @@ class ExamController extends Controller
 
         // dd($examTimeDetails);
 
-        return view('exams.exam_time_table',compact('examTimeDetails','branch_name'));
-
+        return view('exams.exam_time_table', compact('examTimeDetails', 'branch_name'));
     }
 
 
@@ -61,62 +60,61 @@ class ExamController extends Controller
     {
         $academic_year = $request->session()->get('academic_year');
         $branch_id = $request->session()->get('branch_id');
-        
+
         $std = $request->session()->get('std');
-        $dv = $request->session()->get('dv'); 
+        $dv = $request->session()->get('dv');
         $branch = DB::table('ark_branches')
-                    ->where('id', $branch_id)
-                    ->select('id', 'name')  
-                    ->first();
-                    //dd($branch);
-        $exam = Exam::select('branch_id', 'ename')->distinct()->get(); 
+            ->where('id', $branch_id)
+            ->select('id', 'name')
+            ->first();
+        //dd($branch);
+        $exam = Exam::select('branch_id', 'ename')->distinct()->get();
         return view('Exams.exam_wise_result', compact('exam', 'branch'));
     }
-    
+
     //Exam Details Table
     public function getExamDetails(Request $request)
-{
-    $branch_id = $request->input('exam');  
- 
-    $examMarks = ExamDetails::where('ex_id', $branch_id)
-                            ->where('academic_year', session('academic_year'))
-                            ->get();
+    {
+        $branch_id = $request->input('exam');
 
-    return response()->json(['branch_id' => $branch_id, 'examMarks' => $examMarks]);
-}
-  
-public function showExamDetails($branch_id)
-{ 
-    $subject = ExamDetails::where('branch_id', $branch_id)->first();
+        $examMarks = ExamDetails::where('ex_id', $branch_id)
+            ->where('academic_year', session('academic_year'))
+            ->get();
 
-    if (!$subject) { 
-        $student_id = '';
-        $sname = '';
-        $academic_year = '';
-        $std = '';
-        $dv = '';
-        $examMarks = [];
- 
-        return view('Exams.exam_details', compact('student_id', 'sname', 'academic_year', 'std', 'dv', 'examMarks'));
+        return response()->json(['branch_id' => $branch_id, 'examMarks' => $examMarks]);
     }
 
-    // If subject found, retrieve necessary data
-    $student_id = $subject->student_id;
-    $sname = $subject->sname;
-    $academic_year = $subject->academic_year;
-    $std = $subject->std;
-    $dv = $subject->dv;
+    public function showExamDetails($branch_id)
+    {
+        $subject = ExamDetails::where('branch_id', $branch_id)->first();
 
-    // Fetch exam marks based on subject details
-    $examMarks = ExamDetails::where('student_id', $student_id)
-                    ->where('sname', $sname)
-                    ->where('std', $std)
-                    ->where('dv', $dv)
-                    ->where('academic_year', $academic_year)
-                    ->get();
+        if (!$subject) {
+            $student_id = '';
+            $sname = '';
+            $academic_year = '';
+            $std = '';
+            $dv = '';
+            $examMarks = [];
 
-    // Return view with retrieved data
-    return view('Exams.exam_details', compact('student_id', 'sname', 'academic_year', 'std', 'dv', 'examMarks'));
-}
+            return view('Exams.exam_details', compact('student_id', 'sname', 'academic_year', 'std', 'dv', 'examMarks'));
+        }
 
+        // If subject found, retrieve necessary data
+        $student_id = $subject->student_id;
+        $sname = $subject->sname;
+        $academic_year = $subject->academic_year;
+        $std = $subject->std;
+        $dv = $subject->dv;
+
+        // Fetch exam marks based on subject details
+        $examMarks = ExamDetails::where('student_id', $student_id)
+            ->where('sname', $sname)
+            ->where('std', $std)
+            ->where('dv', $dv)
+            ->where('academic_year', $academic_year)
+            ->get();
+
+        // Return view with retrieved data
+        return view('Exams.exam_details', compact('student_id', 'sname', 'academic_year', 'std', 'dv', 'examMarks'));
+    }
 }
